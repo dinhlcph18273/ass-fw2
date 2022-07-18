@@ -98,7 +98,7 @@ type Props = {}
 const Header = (props: Props) => {
   return (
     <div >
-      <Menu onClick={onClick} style={{ width: 240 }} mode="vertical" items={items} />
+      <Menu onClick={onClick} style={{ width: 240}} mode="vertical" items={items} />
     </div>
   )
 }

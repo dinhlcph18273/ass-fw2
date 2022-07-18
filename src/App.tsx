@@ -1,25 +1,25 @@
-import { useState } from 'react'
 import './App.css'
-import Header from './components/Header'
-import Menu from './components/Menu'
-import * as S from './App.styled' 
-import Footer from './components/Footer'
+import { Route, Routes } from 'react-router-dom'
+import HomePage from './Page/HomePage'
+import Admin from './Page/Admin'
+import ListProduct from './Page/Admin/components/Products/List'
+import AddProductPage from './Page/Admin/components/Products/Add'
+import EditProduct from './Page/Admin/components/Products/Edit'
 
 function App() {
 
   return (
-  <S.Container>
-     <div>
-        <Menu/>
-    </div>
-    <S.Header>
-        <Header/>
-    </S.Header>
-
-    <S.Foot>
-      <Footer/>
-    </S.Foot>
-  </S.Container>  
+ 
+  <Routes>
+      <Route path='/'>
+        <Route index element={<HomePage/>}/>
+      </Route>
+      <Route path='/admin' element={<Admin/>}>
+        <Route path='phone' element={<ListProduct/>}/>
+        <Route path='phone/add' element={<AddProductPage/>}/>
+        <Route path='phone/edit' element={<EditProduct/>}/>
+      </Route>
+  </Routes>
   )
 }
 

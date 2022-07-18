@@ -1,4 +1,3 @@
-import React from "react";
 import styled from 'styled-components'
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 const ServiceBtn = ({ image, title1, title2 }: Props) => {
     return (
         <Container>
-            <Image src={image} />
+            <Image style={{color: "white"}} src={image} />
             <Content>
                 <Title>{title1}</Title>
                 <Title>{title2}</Title>

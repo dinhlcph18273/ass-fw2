@@ -11,7 +11,6 @@ import dienthoaivui from '../../assets/images/dienthoaivui.png'
 import "./Footer.css"
 
 
-
 type Props = {}
 
 const Footer = (props: Props) => {

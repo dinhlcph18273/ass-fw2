@@ -1,5 +1,4 @@
-import React from "react";
-import { UserOutlined, SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import { AutoComplete, Input } from 'antd';
 import styled from 'styled-components'
 
@@ -23,7 +22,7 @@ const InputSearch = () => {
                  return option!.value.toUpperCase().includes(inputValue.toUpperCase())
             }}
         >
-            <Input size="large" placeholder="Iphone,Samsung,Oppo..." prefix={<SearchOutlined />} />
+            <Inputcustom size="large" placeholder="Iphone,Samsung,Oppo..." prefix={<SearchOutlined />} />
         </AutoCompleteCustom>
     )
 }
@@ -31,7 +30,10 @@ const InputSearch = () => {
 const AutoCompleteCustom = styled(AutoComplete)`
     width: 550px;
     border: none;
-    border-radius: 10px;
+`
+
+const Inputcustom = styled(Input)`
+    border-radius:10px ;
 `
 
 export default InputSearch;

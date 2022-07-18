@@ -4,8 +4,8 @@ import * as S from './Menu.styled'
 import InputSearch from '../Input/Search';
 import ServiceBtn from '../Buttons/Services';
 import deliveryImage from '../../assets/images/delivery.svg'
-import vector from '../../assets/images/Vector.svg'
-import shopping from '../../assets/images/shop.svg'
+import vector from '../../assets/images/address.svg'
+import shopping from '../../assets/images/shopping.svg'
 import logo from '../../assets/images/logo.png'
 
 type Props = {}
@@ -30,7 +30,6 @@ const Menu = (props: Props) => {
             image={shopping}
             title1="Giỏ" title2="hàng" />
         </S.Services>
-
     </S.Container>
 </S.Wrapper>
   )
