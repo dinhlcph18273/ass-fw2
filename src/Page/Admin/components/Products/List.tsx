@@ -54,7 +54,7 @@ const ListProduct = () => {
       const data = dataPhone.filter((item: any) => item.cateID === cateID);
       setPhoneFilter(data);
     } else {
-      setDataPhone(dataPhone);
+      setPhoneFilter(dataPhone);
     }
   };
 
@@ -110,7 +110,7 @@ const ListProduct = () => {
     {
       title: "Ẩn/hiện",
       dataIndex: "status",
-      width: "10%",
+      width: "20%",
       render: (_: boolean, record: any) => (
         <Switch checked={_} onChange={() => checked(record)} />
       ),
@@ -152,6 +152,7 @@ const ListProduct = () => {
             placeholder="Choose"
             onChange={onGenderChange}
             allowClear
+            defaultValue={`Tất cả`}
           >
             <Option value="">Tất cả</Option>
             {category.map((item: any) => (
