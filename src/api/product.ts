@@ -24,5 +24,11 @@ export const removeProduct = (id:any) => {
 
 export const editProduct = (data:any) => {
     const url = `/products/${data.id}`
-    return instance.post(url, data)
+    return instance.patch(url, data)
 }
+
+export const changeStatus = (product: any) => {
+    const url = `products/${product.id}`;
+    return instance.patch(url, {status: !product.status});
+  };
+  
