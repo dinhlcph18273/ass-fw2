@@ -31,7 +31,7 @@ const AddProductPage = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [imageUrl, setImageUrl] = useState<string>("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState<any>([]);
   const [product, setProduct] = useState<any>({});
 
@@ -39,7 +39,7 @@ const AddProductPage = () => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 2097152) {
-        return message.error("File không được quá 2MB");
+        return message.error("File không được quá 2KB");
       } else {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -52,12 +52,12 @@ const AddProductPage = () => {
 
   const uploadImage = async (base64Image: string) => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       const { data } = await axios.post(
         "https://image-uploader-anhhtus.herokuapp.com/api/upload",
         { data: base64Image }
       );
-      setLoading(false);
+      setIsLoading(false);
       setImageUrl(data.url);
     } catch (error: any) {
       message.error(JSON.stringify(error.message));
@@ -66,24 +66,24 @@ const AddProductPage = () => {
   const onFinish = async (values: any) => {
     if (!imageUrl) return message.error("Ảnh không được trống");
     Modal.confirm({
-      content: "Bạn có chắc muốn thêm",
+      content: "Bạn có chắc muốn submit",
       onOk: async () => {
         if (id) {
-          if ((!imageUrl && loading) || loading) {
+          if ((!imageUrl && isLoading) || isLoading) {
             message.error("Chờ ảnh!");
           } else {
             await editProduct({ ...values, images: imageUrl, id: product.id });
             message.success("Cập nhật thành công");
 
-            navigate("/admin/phone");
+            navigate("/admin/products");
           }
         } else {
-          if (imageUrl && !loading) {
+          if (imageUrl && !isLoading) {
             await createProduct({ ...values, images: imageUrl });
 
             message.success("Thêm thành công");
 
-            navigate("/admin/phone");
+            navigate("/admin/products");
           } else {
             message.error("Chờ ảnh");
           }
@@ -133,7 +133,7 @@ const AddProductPage = () => {
                     accept="image/jpg,image/png,image/jpg"
                     defaultValue={imageUrl}
                   />
-                  {product.images || imageUrl || loading ? (
+                  {product.images || imageUrl || isLoading ? (
                     <S.ImgPre src={imageUrl || product.images} alt="" />
                   ) : (
                     <>
@@ -141,7 +141,7 @@ const AddProductPage = () => {
                       <span>Thêm ảnh</span>
                     </>
                   )}
-                  {loading && <Spin size="large" />}
+                  {isLoading && <Spin size="large" />}
                 </S.UploadBtn>
               </Form.Item>
             </S.Upload>
@@ -187,7 +187,14 @@ const AddProductPage = () => {
                   label="Giá giảm"
                   labelCol={{ span: 24 }}
                   rules={[
-                    { required: true, message: "Vui lòng nhập sản phẩm" },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        const price = getFieldValue("originalPrice")
+                        return price && value < price 
+                        ? Promise.resolve()
+                        : Promise.reject("Giá sale phải nhỏ hơn giá gốc!")
+                      },
+                    }),
                   ]}
                 >
                   <InputNumber style={{ width: "100%" }} size="large" />

@@ -25,6 +25,7 @@ export const UploadBtn = styled.label`
   position: relative;
   overflow: hidden;
   padding: 10px;
+  background:none ;
 
   ::before {
     position: absolute;

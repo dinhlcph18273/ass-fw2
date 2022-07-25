@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { Typography, Button, Table, Row, Switch, message, Select } from "antd";
 import { Link } from "react-router-dom";
 import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
@@ -21,7 +20,7 @@ interface DataType {
 const { Option } = Select;
 
 const ListProduct = () => {
-  const [dataPhone, setDataPhone] = useState([]);
+  const [product, setProduct] = useState([]);
   const [phoneFilter, setPhoneFilter] = useState([]);
   const [category, setCategory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +28,7 @@ const ListProduct = () => {
   const fetchData = async () => {
     try {
       const { data } = await getAllProduct();
-      setDataPhone(data);
+      setProduct(data);
       setPhoneFilter(data);
       setIsLoading(false);
     } catch (error) {
@@ -51,14 +50,14 @@ const ListProduct = () => {
 
   const onGenderChange = (cateID: any) => {
     if (cateID) {
-      const data = dataPhone.filter((item: any) => item.cateID === cateID);
+      const data = product.filter((item: any) => item.cateID === cateID);
       setPhoneFilter(data);
     } else {
-      setPhoneFilter(dataPhone);
+      setPhoneFilter(product);
     }
   };
 
-  const checked = async (record: any) => {
+  const checkStatus = async (record: any) => {
     await changeStatus(record);
     message.success("Thay đổi trạng thái thành công!");
     fetchData();
@@ -112,7 +111,7 @@ const ListProduct = () => {
       dataIndex: "status",
       width: "20%",
       render: (_: boolean, record: any) => (
-        <Switch checked={_} onChange={() => checked(record)} />
+        <Switch checked={_} onChange={() => checkStatus(record)} />
       ),
       align: "center",
     },
@@ -124,7 +123,7 @@ const ListProduct = () => {
       align: "center",
       render: (id: any) => (
         <Row>
-          <Link className="edit-to" to={`/admin/phone/${id}/edit`}>
+          <Link className="edit-to" to={`/admin/products/${id}/edit`}>
             <S.Buttoncustom>
               <AiOutlineEdit />
             </S.Buttoncustom>
@@ -140,7 +139,7 @@ const ListProduct = () => {
         <Typography.Title level={2} style={{ marginLeft: 30 }}>
           Điện thoại
         </Typography.Title>
-        <Link to="/admin/phone/add">
+        <Link to="/admin/products/add">
           <S.CustomPlus icon={<PlusOutlined />} />
         </Link>
       </S.Breadcrumb>
