@@ -1,8 +1,11 @@
-import { Button, message } from "antd";
+import { Button, message, Typography, Row, Col } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { currency } from "../../utils/hel";
 import cartSlice from "./CartSlice";
+
+const { Title } = Typography;
 
 const Products = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -14,19 +17,19 @@ const Products = ({ product }: any) => {
   return (
     <div>
       <div className="product-container">
-        <h3>Product</h3>
-        <Cart>
+        <Title level={3}>Product</Title>
+        <Row gutter={24} style={{textAlign: "center"}}>
           {product?.map((item: any, index: any) => (
-            <div className="product-item" key={index}>
-              <h4>{item.name}</h4>
-              <div>{item.saleOffPrice}</div>
-              <img style={{ width: "50%" }} src={item.image} />
-              <Button type="primary" onClick={() => addToCart(item)}>
+            <Col key={index}>
+              <img width="50%" src={item.image} />
+              <Title level={5}>{item.name}</Title>
+              <div>{currency(item.saleOffPrice)}</div>
+              <Button type="primary" danger  onClick={() => addToCart(item)}>
                 Add to cart
               </Button>
-            </div>
+            </Col>
           ))}
-        </Cart>
+        </Row>
       </div>
     </div>
   );

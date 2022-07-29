@@ -2,44 +2,60 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currency } from "../../utils/hel";
 import cartSlice from "./CartSlice";
+import { Col, Divider, Row, Typography, Button, InputNumber } from "antd";
+
+const { Title } = Typography;
 
 type Props = {};
 
 const Cart = (props: Props) => {
   const { cart, products, total }: any = useSelector((store) => store);
-  
+
   const dispatch = useDispatch();
   const increase = (id: any) => {
     dispatch(cartSlice.actions.increase(id));
-    
   };
   const decrease = (id: any) => {
-    dispatch(cartSlice.actions.decrease(id));   
-     
+    dispatch(cartSlice.actions.decrease(id));
   };
   console.log(cart);
-  
+
   return (
     <div className="cart-container">
-      <h3>Cart</h3>
-      {cart.cart?.map((item: any, index:any) => (
-        <div className="cart-item" key={index}>
-          <div style={{ display: "flex" }}>
-            <h4>{item.name}</h4>
-            <img style={{ width: "20%" }} src={item.image} alt="" />
-            <div>
-              <button onClick={() => decrease(item.id)}>-</button>
-              <button>{item.amount ? item.amount : 1}</button>
-              <button onClick={() => increase(item.id)}>+</button>
-            </div>
-          </div>
-          <p>{currency(item.total || item.saleOffPrice)}</p>
-        </div>
+      <Title level={3}>Cart</Title>
+      {cart.cart?.map((item: any) => (
+        <Row key={item.id}>
+          <Col span={20}>
+            <Title level={5}>{item.name}</Title>
+            <Row>
+              <Col>
+                <img width="50%" src={item.image} />
+              </Col>
+              <Col>
+                <Typography>Số lượng</Typography>
+                <Row>
+                  <Button onClick={() => decrease(item.id)}>-</Button>
+                  <Col>
+                    <InputNumber value={item.amount ? item.amount : 1} />
+                  </Col>
+                  <Col>
+                    <Button onClick={() => increase(item.id)}>+</Button>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={4}>
+              <Title level={5}>{currency(item.total || item.saleOffPrice)}</Title>
+          </Col>
+        </Row>
       ))}
-      <div className="total">
-        <div>Total</div>
-        <h2>{currency(cart.total)}</h2>
-      </div>
+      <Divider/>
+
+      <Row>
+        <Col span={20}>Total</Col>
+        <Col span={4}><Title level={3} style={{color: "red"}}>{currency(cart.total)}</Title></Col>
+      </Row>
     </div>
   );
 };
