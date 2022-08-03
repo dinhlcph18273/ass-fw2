@@ -9,7 +9,7 @@ const { Title } = Typography;
 type Props = {};
 
 const Cart = (props: Props) => {
-  const { cart, products, total }: any = useSelector((store) => store);
+  const { cart }: any = useSelector((store) => store);
 
   const dispatch = useDispatch();
   const increase = (id: any) => {

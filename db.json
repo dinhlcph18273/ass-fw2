@@ -1,9 +1,25 @@
 {
   "users": [
     {
-      "id": 1,
-      "userName": "dinhlc",
-      "password": "123456"
+      "email": "admin@gmail.com",
+      "password": "$2a$10$GUMBSQ2gtpZREOrpZ9PJmOc9HNaXyG9KrPHVmsK.JEWd7fuFIhYWm",
+      "phone": 987654321,
+      "role": 0,
+      "id": 1
+    },
+    {
+      "email": "moi@gmail.com",
+      "password": "$2a$10$qktTAcNXaiTB4ermAK3uPec.hM0ab9ZcQ07ojQLguBF7M2kOQTr/6",
+      "phone": 1234675454,
+      "role": 1,
+      "id": 2
+    },
+    {
+      "email": "user@gmail.com",
+      "password": "$2a$10$ES1Q6Q26mW.FxF4Q2IgJJe/7/6Anlmn.LLioe/pahrdgwVIivrvse",
+      "phone": 123456768,
+      "role": 1,
+      "id": 3
     }
   ],
   "category": [

@@ -4,6 +4,9 @@ import HomePage from "./Page/HomePage";
 import Admin from "./Page/Admin";
 import ListProduct from "./Page/Admin/components/Products/List";
 import AddProductPage from "./Page/Admin/components/Products/Add";
+import Signin from "./components/layouts/signin";
+import Signup from "./components/layouts/signup";
+import PrivateRouter from "./components/PrivateRouter";
 
 function App() {
   return (
@@ -11,11 +14,20 @@ function App() {
       <Route path="/">
         <Route index element={<HomePage />} />
       </Route>
-      <Route path="/admin" element={<Admin />}>
+      <Route
+        path="/admin"
+        element={
+          <PrivateRouter>
+            <Admin />
+          </PrivateRouter>
+        }
+      >
         <Route path="products" element={<ListProduct />} />
         <Route path="products/add" element={<AddProductPage />} />
         <Route path="products/:id/edit" element={<AddProductPage />} />
       </Route>
+      <Route path="signin" element={<Signin />} />
+      <Route path="signup" element={<Signup />} />
     </Routes>
   );
 }

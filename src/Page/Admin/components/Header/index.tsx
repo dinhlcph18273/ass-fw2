@@ -4,12 +4,14 @@ import { Breadcrumb } from "antd";
 import { Input, Layout } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { isAuthenticate } from "../../../../utils/localStorage";
 
 const { Header } = Layout;
 
 type Props = {};
 
 const Head = (props: Props) => {
+ const isUser = isAuthenticate('user').user.phone;
   return (
     <Container>
       <Logo src={logo} />
@@ -27,7 +29,7 @@ const Head = (props: Props) => {
       />
 
       <HelloName>
-        Xin chào <b>Lê Công Định</b>
+        Xin chào <b>{isUser}</b>
       </HelloName>
     </Container>
   );

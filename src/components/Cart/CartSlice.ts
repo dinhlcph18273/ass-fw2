@@ -24,11 +24,11 @@ const cartSlice = createSlice({
       );
     },
     increase: (state: any, action: any) => {
-      const currentItem = state.cart.find(
+      const current = state.cart.find(
         (item: any) => item.id === action.payload
       );
-      currentItem.amount = currentItem.amount ? currentItem.amount + 1 : 2;
-      currentItem.total = currentItem.saleOffPrice * currentItem.amount;
+      current.amount = current.amount ? current.amount + 1 : 2;
+      current.total = current.saleOffPrice * current.amount;
       state.total = state.cart.reduce(
         (acc: any, item: any) =>
           item.total ? acc + item.total : acc + item.saleOffPrice,
@@ -36,19 +36,19 @@ const cartSlice = createSlice({
       );
     },
     decrease: (state: any, action: any) => {
-      const currentItem = state.cart.find(
+      const current = state.cart.find(
         (item: any) => item.id === action.payload
       );
-      currentItem.amount = currentItem.amount ? currentItem.amount - 1 : 0;
-      if (currentItem.amount < 1) {
+      current.amount = current.amount ? current.amount - 1 : 0;
+      if (current.amount < 1) {
         const confirm = window.confirm("Bạn có chắc muốn xóa");
         if (confirm) {
           state.cart = state.cart.filter(
-            (item: any) => item.id !== currentItem.id
+            (item: any) => item.id !== current.id
           );
         }
       }
-      currentItem.total = currentItem.amount * currentItem.saleOffPrice;
+      current.total = current.amount * current.saleOffPrice;
       state.total = state.cart.reduce(
         (acc: any, item: any) =>
           item.total ? acc + item.total : acc + item.saleOffPrice,
