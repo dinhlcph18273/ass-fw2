@@ -15,12 +15,10 @@ const Signin = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const onFinish = (values: any) => {
-    console.log("Success:", values);
     dispatch(login(values)).then(() => {
       navigate("/admin");
     });
   };
-
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };

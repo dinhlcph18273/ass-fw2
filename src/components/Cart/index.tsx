@@ -1,63 +1,68 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { currency } from "../../utils/hel";
-import cartSlice from "./CartSlice";
-import { Col, Divider, Row, Typography, Button, InputNumber } from "antd";
-
-const { Title } = Typography;
+import styled from "styled-components";
+import { useAppSelector } from "../../app/hooks";
+import { GetCart } from "../../feartures/cart/cartSlice";
+import CartItem from "./CartItem";
 
 type Props = {};
 
 const Cart = (props: Props) => {
-  const { cart }: any = useSelector((store) => store);
-
-  const dispatch = useDispatch();
-  const increase = (id: any) => {
-    dispatch(cartSlice.actions.increase(id));
-  };
-  const decrease = (id: any) => {
-    dispatch(cartSlice.actions.decrease(id));
-  };
-  console.log(cart);
-
+  const { cart, total } = useAppSelector(GetCart);
+  console.log(useAppSelector(GetCart));
+  
   return (
-    <div className="cart-container">
-      <Title level={3}>Cart</Title>
-      {cart.cart?.map((item: any) => (
-        <Row key={item.id}>
-          <Col span={20}>
-            <Title level={5}>{item.name}</Title>
-            <Row>
-              <Col>
-                <img width="50%" src={item.image} />
-              </Col>
-              <Col>
-                <Typography>Số lượng</Typography>
-                <Row>
-                  <Button onClick={() => decrease(item.id)}>-</Button>
-                  <Col>
-                    <InputNumber value={item.amount ? item.amount : 1} />
-                  </Col>
-                  <Col>
-                    <Button onClick={() => increase(item.id)}>+</Button>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={4}>
-              <Title level={5}>{currency(item.total || item.saleOffPrice)}</Title>
-          </Col>
-        </Row>
-      ))}
-      <Divider/>
-
-      <Row>
-        <Col span={20}>Total</Col>
-        <Col span={4}><Title level={3} style={{color: "red"}}>{currency(cart.total)}</Title></Col>
-      </Row>
+    <div>
+      <Title>
+        <h2>Giỏ hàng</h2>
+      </Title>
+      <Content>
+        {cart?.map((item: any, index: any) => (
+          <CartItem data={item} key={index} />
+        ))}
+        <Footer>
+          <TotalText>Tổng số tiền</TotalText>
+          <TotalPrice>{total} ₫</TotalPrice>
+        </Footer>
+      </Content>
     </div>
   );
 };
+
+const Content = styled.div`
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid #acacac;
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid #acacac;
+`;
+
+const TotalText = styled.div`
+  font-weight: bold;
+`;
+
+const TotalPrice = styled.div`
+  font-size: 20px;
+  color: red;
+  font-weight: bold;
+`;
 
 export default Cart;
