@@ -1,9 +1,11 @@
 import React from "react";
 import { useAppDispatch } from "../../../app/hooks";
-import { decProductToCart, incProductToCart } from "../../../feartures/cart/cartSlice";
-import phone from '../../../assets/images/Rectangle (1).png'
-
-import styles from "./CartItem.module.css";
+import {
+  decProductToCart,
+  incProductToCart,
+} from "../../../feartures/cart/cartSlice";
+import { currency } from "../../../utils/hel";
+import * as S from "./CartItem.styled";
 type Props = {
   data: any;
 };
@@ -11,37 +13,38 @@ type Props = {
 const CartItem = ({ data }: Props) => {
   const dispatch = useAppDispatch();
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h3 className={styles.name}>{data.name}</h3>
-        <span className={styles.price}>{data.total_price} ₫</span>
+    <S.Container>
+      <div>
+        <img src={data.img} alt="" style={{ width: "100%" }} />
       </div>
-      <div className={styles.content}>
-        <div className={styles.img}>
-          <img
-            src={phone}
-            alt=""
-          />
+      <div>
+        <h3>{data.name}</h3>
+        <div style={{display:"flex", gap:5, alignItems:"center"}}>
+          <S.Price>{currency(data.total_price)}</S.Price>
+          <S.ItemPriceSaleOrigin>
+            {currency(data.oriPrice)}
+          </S.ItemPriceSaleOrigin>
         </div>
-        <div className={styles.quantity}>
-          <div className={styles.group_quantity}>
-            <button
-              className={styles.btn}
+        <S.Quantity>
+          <div>Chọn số lượng:</div>
+          <S.GroupQuantity>
+            <S.Btn
+              style={{ borderRight: "none" }}
               onClick={() => dispatch(decProductToCart(data.id))}
             >
               -
-            </button>
-            <span className={styles.input_quantity}>{data.quantity}</span>
-            <button
-              className={styles.btn}
+            </S.Btn>
+            <S.InputQuantity>{data.quantity}</S.InputQuantity>
+            <S.Btn
+              style={{ borderLeft: "none" }}
               onClick={() => dispatch(incProductToCart(data.id))}
             >
               +
-            </button>
-          </div>
-        </div>
+            </S.Btn>
+          </S.GroupQuantity>
+        </S.Quantity>
       </div>
-    </div>
+    </S.Container>
   );
 };
 

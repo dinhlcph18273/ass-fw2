@@ -1,7 +1,12 @@
+import { Button } from "antd";
 import React from "react";
+import { AiOutlineLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAppSelector } from "../../app/hooks";
 import { GetCart } from "../../feartures/cart/cartSlice";
+import { currency } from "../../utils/hel";
+import Menu from "../Menu";
 import CartItem from "./CartItem";
 
 type Props = {};
@@ -9,20 +14,54 @@ type Props = {};
 const Cart = (props: Props) => {
   const { cart, total } = useAppSelector(GetCart);
   console.log(useAppSelector(GetCart));
-  
+
   return (
     <div>
+      <Menu />
       <Title>
-        <h2>Giỏ hàng</h2>
+        <Button
+          icon={<AiOutlineLeft />}
+          style={{ border: "none", fontWeight: "bold", padding: 0 }}
+        >
+          <Link to="/" style={{ color: "red" }}>
+            Trở về
+          </Link>
+        </Button>
+        <h2 style={{ color: "red" }}>Giỏ hàng</h2>
+        <div></div>
       </Title>
       <Content>
         {cart?.map((item: any, index: any) => (
           <CartItem data={item} key={index} />
         ))}
         <Footer>
-          <TotalText>Tổng số tiền</TotalText>
-          <TotalPrice>{total} ₫</TotalPrice>
+          <TotalText>Tổng tiền tạm tính:</TotalText>
+          <TotalPrice>{currency(total)}</TotalPrice>
         </Footer>
+        <Button
+          style={{
+            width: "100%",
+            border: "1px solid red",
+            color: "white",
+            background: "#D70018",
+            textTransform: "uppercase",
+            height: 50,
+          }}
+        >
+          <Link to="">Tiến hành đặt hàng</Link>
+        </Button>
+        <Button
+          style={{
+            width: "100%",
+            border: "1px solid red",
+            textTransform: "uppercase",
+            height: 50,
+            marginBottom: "10vh",
+            color: "red",
+          }}
+        >
+          <Link to="">Chọn thêm sản phẩm khác</Link>
+        </Button>
       </Content>
     </div>
   );
@@ -30,11 +69,10 @@ const Cart = (props: Props) => {
 
 const Content = styled.div`
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 600px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  border: 1px solid #acacac;
 `;
 
 const Title = styled.div`
@@ -43,16 +81,16 @@ const Title = styled.div`
   align-items: center;
   width: 100%;
   padding-bottom: 10px;
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
 `;
 
 const Footer = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 20px;
-  border-top: 1px solid #acacac;
 `;
 
 const TotalText = styled.div`

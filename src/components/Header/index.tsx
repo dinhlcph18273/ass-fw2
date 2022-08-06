@@ -9,6 +9,7 @@ import type { MenuProps } from "antd";
 import { Menu } from "antd";
 import styled from "styled-components";
 import Banner from "../../assets/images/banner.png";
+import React from "react";
 
 type MenuItem = Required<MenuProps>["items"][number];
 function getItem(
@@ -75,7 +76,7 @@ const items: MenuItem[] = [
   ]),
 ];
 
-const onClick: MenuProps["onClick"] = (e) => {
+const onClick: MenuProps["onClick"] = (e: any) => {
   console.log("click", e);
 };
 type Props = {};
@@ -101,11 +102,10 @@ const Header = (props: Props) => {
 const Row = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top:15px ;
-  
+  margin-top: 15px;
 `;
 const Img = styled.div`
-  text-align:right ;
-`
+  text-align: right;
+`;
 
 export default Header;

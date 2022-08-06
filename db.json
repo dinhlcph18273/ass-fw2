@@ -52,7 +52,8 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_vmpv9y.png"
     },
     {
       "id": 2,
@@ -65,7 +66,8 @@
       "cateID": 1,
       "status": true,
       "feature": "Màn hình Super Retina XDR 6.7 inch với ProMotion cho cảm giác nhanh nhạy hơn3\nChế độ Điện Ảnh làm tăng thêm độ sâu trường ảnh nông và tự động thay đổi tiêu cự trong video\nHệ thống camera chuyên nghiệp Telephoto, Wide và Ultra Wide 12MP; LiDAR Scanner; phạm vi thu phóng quang học 6x; chụp ảnh macro; Phong Cách Nhiếp Ảnh, video ProRes, HDR thông minh thế hệ 4, chế độ Ban Đêm, Apple ProRAW, khả năng quay video HDR Dolby Vision 4K",
-      "description": "Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ nhà mạng và truy cập apple.com/iphone/cellular.\n\n2Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập apple.com/batteries để biết thêm thông tin.\n\n"
+      "description": "Cần có gói cước dữ liệu. Mạng 5G chỉ khả dụng ở một số thị trường và được cung cấp qua một số nhà mạng. Tốc độ có thể thay đổi tùy địa điểm và nhà mạng. Để biết thông tin về hỗ trợ mạng 5G, vui lòng liên hệ nhà mạng và truy cập apple.com/iphone/cellular.\n\n2Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập apple.com/batteries để biết thêm thông tin.\n\n",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_11_mytv4s.png"
     },
     {
       "id": 3,
@@ -78,7 +80,8 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_2_yldbig.png"
     },
     {
       "id": 4,
@@ -91,7 +94,8 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_3_cyyvif.png"
     },
     {
       "id": 5,
@@ -104,7 +108,8 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_4_gctfhg.png"
     },
     {
       "id": 6,
@@ -117,7 +122,8 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_5_mpqhbs.png"
     },
     {
       "id": 7,
@@ -130,7 +136,8 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_6_t8iq1g.png"
     },
     {
       "id": 8,
@@ -143,46 +150,92 @@
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_7_jh4cya.png"
     },
     {
       "id": 9,
-      "name": "Samsung Galaxy S22 Ultra (8GB - 128GB)",
-      "originalPrice": "30990000",
-      "saleOffPrice": "25090000",
-      "contextSale": "Dịch vụ phòng chờ hạng thương gia tại sân bay và",
+      "name": "iPhone 11 128GB I Chính hãng VN/A",
+      "originalPrice": "19900000",
+      "saleOffPrice": "14190000",
+      "contextSale": "[HOT] Thu cũ lên đời giá cao - Thủ tục nhanh - Trợ giá lên tới 1.000.000đ",
       "rate": 5,
-      "quantityComment": 72,
+      "quantityComment": 35,
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_8_g6kgvo.png"
     },
     {
       "id": 10,
-      "name": "iPhone 13 128GB | Chính hãng VN/A",
-      "originalPrice": "24990000",
-      "saleOffPrice": "19590000",
-      "contextSale": "Thu cũ lên đời - Trợ giá 1 triệu",
+      "name": "Xiaomi Redmi Note 11 Pro",
+      "originalPrice": "7490000",
+      "saleOffPrice": "645000",
+      "contextSale": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
       "rate": 5,
-      "quantityComment": 72,
+      "quantityComment": 5,
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_9_zbp0xn.png"
     },
     {
       "id": 11,
+      "name": "Samsung Galaxy A73 (5G) 256GB",
+      "originalPrice": "12990000",
+      "saleOffPrice": "10690000",
+      "contextSale": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
+      "rate": 5,
+      "quantityComment": 3,
+      "cateID": 1,
+      "status": true,
+      "feature": "",
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_10_fqejg9.png"
+    },
+    {
+      "id": 12,
+      "name": "iPhone 13 Pro 128GB | Chính hãng VN/A",
+      "originalPrice": "31990000",
+      "saleOffPrice": "24990000",
+      "contextSale": "Thu cũ lên đời - Trợ giá 1 triệu",
+      "rate": 5,
+      "quantityComment": 3,
+      "cateID": 1,
+      "status": true,
+      "feature": "",
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610723/FW2/Rectangle_1_ylcavk.png"
+    },
+    {
+      "id": 13,
+      "name": "OPPO Reno6 Z 5G",
+      "originalPrice": "9490000",
+      "saleOffPrice": "6790000",
+      "contextSale": "Thu cũ lên đời - Trợ giá 1 triệu",
+      "rate": 5,
+      "quantityComment": 3,
+      "cateID": 1,
+      "status": true,
+      "feature": "",
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_12_hvcszz.png"
+    },
+    {
+      "id": 14,
       "name": "Xiaomi Redmi Note 11",
       "originalPrice": "4690000",
       "saleOffPrice": "3850000",
       "contextSale": "Thu cũ đổi mới - Trợ giá đến 300.000đ",
       "rate": 5,
-      "quantityComment": 72,
+      "quantityComment": 11,
       "cateID": 1,
       "status": true,
       "feature": "",
-      "description": ""
+      "description": "",
+      "img": "https://res.cloudinary.com/dinhlcph18273/image/upload/v1659610724/FW2/Rectangle_9_zbp0xn.png"
     }
   ]
 }

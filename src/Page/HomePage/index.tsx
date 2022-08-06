@@ -240,7 +240,6 @@ const HomePage = (props: Props) => {
         <Header />
       </S.Header>
       <ProductsCard />
-      <Cart />
       <ListCategory data={cateAccessory} />
       <ListCategory data={cateConputer} />
       <S.Foot>

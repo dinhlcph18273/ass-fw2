@@ -7,12 +7,16 @@ import AddProductPage from "./Page/Admin/components/Products/Add";
 import Signin from "./components/layouts/signin";
 import Signup from "./components/layouts/signup";
 import PrivateRouter from "./components/PrivateRouter";
+import ProductDetail from "./components/Product/ProductDetail";
+import Cart from "./components/Cart";
 
 function App() {
   return (
     <Routes>
       <Route path="/">
         <Route index element={<HomePage />} />
+        <Route path=":id/product" element={<ProductDetail />} />
+        <Route path="cart" element={<Cart/>}/>
       </Route>
       <Route
         path="/admin"

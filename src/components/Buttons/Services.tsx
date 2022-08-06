@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 type Props = {
     image: any,
     title1: string,
-    title2: string
+    title2: string,
+    link: string
 }
 
-const ServiceBtn = ({ image, title1, title2 }: Props) => {
+const ServiceBtn = ({ image, title1, title2, link }: Props) => {
     return (
         <Container>
-            <Image style={{color: "white"}} src={image} />
+            <Link to={link}><Image style={{color: "white"}} src={image} /></Link>
             <Content>
                 <Title>{title1}</Title>
                 <Title>{title2}</Title>

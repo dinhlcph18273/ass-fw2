@@ -3,15 +3,21 @@ import logo from "../../../../assets/images/logo.png";
 import { Breadcrumb } from "antd";
 import { Input, Layout } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticate } from "../../../../utils/localStorage";
+import { AiOutlineLogout } from "react-icons/ai";
+import storage from "redux-persist/lib/storage";
 
 const { Header } = Layout;
 
 type Props = {};
 
 const Head = (props: Props) => {
- const isUser = isAuthenticate('user').user.phone;
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    storage.removeItem('persist:root')
+    navigate('/signin')
+  }
   return (
     <Container>
       <Logo src={logo} />
@@ -29,7 +35,8 @@ const Head = (props: Props) => {
       />
 
       <HelloName>
-        Xin chào <b>{isUser}</b>
+        Xin chào <b>Admin</b>
+        <AiOutlineLogout onClick={handleLogout}/>
       </HelloName>
     </Container>
   );
@@ -58,7 +65,6 @@ const Inputcustom = styled(Input)`
 `;
 const HelloName = styled.h3`
   color: white;
-
   margin-left: 400px;
   margin-bottom: 0;
 `;

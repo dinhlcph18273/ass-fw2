@@ -53,6 +53,7 @@ export const cartSlice = createSlice({
             }
           : item
       );
+      message.success("Tăng số lượng thành công")
       return (state = {
         ...state,
         cart: inc,

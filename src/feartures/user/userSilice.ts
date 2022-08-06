@@ -1,11 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
 import { AxiosError } from "axios";
+import storage from "redux-persist/lib/storage";
 import { signin, signup } from "../../api/user";
-import {
-  authenticated,
-  removeLs,
-} from "../../utils/localStorage";
 
 export const createUser = createAsyncThunk(
   "user/createUser",
@@ -22,9 +19,9 @@ export const login = createAsyncThunk("user/login", async (user: any) => {
   try {
     const { data, status }: any = await signin(user);
     if (status === 200) {
-      authenticated("user", data);
       message.success("Đăng nhập thành công!");
     }
+    return data
   } catch (error) {
     const err = error as AxiosError;
     message.error(err.response?.data as string);
@@ -34,27 +31,26 @@ export const login = createAsyncThunk("user/login", async (user: any) => {
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    value: [],
-    auth: {},
-    isSignin: false,
+    accessToken: "",
+    user: {
+      email: "",
+      id: null,
+      phone: null,
+    },
   },
   reducers: {
     signOut(state) {
-      removeLs("user");
-      state.isSignin = false;
+      storage.removeItem("user")
       message.success("Đăng xuất thành công");
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createUser.fulfilled, (state, action) => {
-      state.value = action.payload;
-    });
     builder.addCase(login.pending, (state: any, action: any) => {
       state.isSignin = false;
     });
-    builder.addCase(login.fulfilled, (state: any, action) => {
-      state.value = action.payload;
-      state.isSignin = true;
+    builder.addCase(login.fulfilled, (state: any, action:any) => {
+      state.accessToken = action.payload.accessToken;
+      state.user = action.payload.user;
     });
   },
 });
