@@ -3,15 +3,17 @@ import { Rate } from "antd";
 import { useAppDispatch } from "../../../app/hooks";
 import { addProductToCart } from "../../../feartures/cart/cartSlice";
 import * as S from "./ProductItem.styled";
-import phone from '../../../assets/images/Rectangle (1).png'
 import { currency } from "../../../utils/hel";
 
 type Props = {
-  data: any;
+  data: any,
+  width?: any
+
 };
 
 const ProdcutsItem = (props: Props) => {
   const dispatch = useAppDispatch();
+  const width = props.width ? props.width : null
   const addToCart = (product: any) => {
     const itemCart = {
       name: product.name,
@@ -27,6 +29,7 @@ const ProdcutsItem = (props: Props) => {
   return (
     <S.ContainerItem
       onClick={() => addToCart(props.data)}
+      style={{width : width}}
     >
       <S.ItemImage>
         <img src={props.data.img} alt="" />

@@ -5,7 +5,7 @@ export const getAllProduct = () => {
   return instance.get(url);
 };
 
-export const getProduct = (id: any) => {
+export const readProduct = (id: any) => {
   const url = `products/${id}`;
   return instance.get(url);
 };
@@ -31,6 +31,6 @@ export const changeStatus = (product: any) => {
 };
 
 export const filterProducts = (categoryId: any) => {
-  const url = `products?CateID=${categoryId}`;
+  const url = `products?cateID=${categoryId}`;
   return instance.get(url, categoryId)
 };

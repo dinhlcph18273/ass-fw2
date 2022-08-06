@@ -3,8 +3,10 @@ import { useAppDispatch } from "../../../app/hooks";
 import {
   decProductToCart,
   incProductToCart,
+  removeCartItem,
 } from "../../../feartures/cart/cartSlice";
 import { currency } from "../../../utils/hel";
+import IconClose from "../../icons/IconClose";
 import * as S from "./CartItem.styled";
 type Props = {
   data: any;
@@ -17,16 +19,29 @@ const CartItem = ({ data }: Props) => {
       <div>
         <img src={data.img} alt="" style={{ width: "100%" }} />
       </div>
-      <div>
-        <h3>{data.name}</h3>
-        <div style={{display:"flex", gap:5, alignItems:"center"}}>
+      <S.Main>
+        <S.Header>
+          <h3>{data.name}</h3>
+          <div onClick={()=> dispatch(removeCartItem(data.id))}>
+            <IconClose />
+          </div>
+        </S.Header>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 20,
+            alignItems: "center",
+          }}
+        >
           <S.Price>{currency(data.total_price)}</S.Price>
           <S.ItemPriceSaleOrigin>
             {currency(data.oriPrice)}
           </S.ItemPriceSaleOrigin>
+          <S.PricePercent>Giảm 27%</S.PricePercent>
         </div>
         <S.Quantity>
-          <div>Chọn số lượng:</div>
+          <span>Chọn số lượng:</span>
           <S.GroupQuantity>
             <S.Btn
               style={{ borderRight: "none" }}
@@ -43,7 +58,15 @@ const CartItem = ({ data }: Props) => {
             </S.Btn>
           </S.GroupQuantity>
         </S.Quantity>
-      </div>
+        <S.Sale>
+            <p>Chương trình khuyến mãi:</p>
+            <p>Dịch vụ phòng chờ hạng thương gia tại sân bay</p>
+            <p>
+              Ưu đãi Galaxy gift lên đến 1.700.000đ (VieON VIP HBO GO, Zing MP3,
+              Phúc Long, Galaxy Play)
+            </p>
+          </S.Sale>
+      </S.Main>
     </S.Container>
   );
 };

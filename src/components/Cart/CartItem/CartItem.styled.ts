@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid #acacac2e;
+  gap: 10px;
 `;
 
 export const Header = styled.div`
@@ -15,12 +16,20 @@ export const Header = styled.div`
 
 export const Name = styled.div``;
 
-export const Price = styled.span`
+export const Price = styled.div`
   font-weight: bold;
   font-size: 16px;
   color: red;
 `;
 
+export const PricePercent = styled.div`
+  background: #D70018;
+	padding: 5px;
+	font-size: 12px;
+	color: #fff;
+	font-weight: normal;
+	border-radius: 4px;
+`;
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -64,4 +73,17 @@ export const ItemPriceSaleOrigin = styled.div`
   color: #707070;
   font-size: 14px;
   font-weight: 400;
+`;
+
+export const Main = styled.div`
+  width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+`
+
+export const Sale = styled.div`
+  padding: 10px;
+	background: #F6F6F6;
+	border-radius: 10px;
 `;

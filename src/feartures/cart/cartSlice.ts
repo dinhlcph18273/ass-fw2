@@ -102,10 +102,27 @@ export const cartSlice = createSlice({
         });
       }
     },
+    removeCartItem: (state:any, action:any) => {
+      const confirm = window.confirm("Bạn có muốn xóa ?");
+        if (confirm) {
+          const newCart = state.cart.filter(
+            (item: any) => item.id !== action.payload
+          );
+          message.success("Xóa thành công !!");
+          return (state = {
+            ...state,
+            cart: newCart,
+            total: newCart.reduce(
+              (accu: any, item: any) => accu + item.total_price,
+              0
+            ),
+          });
+        }
+    }
   },
   extraReducers(builder) {},
 });
-export const { addProductToCart, incProductToCart, decProductToCart } =
+export const { addProductToCart, incProductToCart, decProductToCart, removeCartItem } =
   cartSlice.actions;
 
 export const GetCart = (state: RootState) => state.cart

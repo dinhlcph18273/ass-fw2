@@ -19,7 +19,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   createProduct,
   editProduct,
-  getProduct,
+  readProduct,
 } from "../../../../api/product";
 import axios from "axios";
 
@@ -100,7 +100,7 @@ const AddProductPage = () => {
 
     if (id) {
       (async () => {
-        const { data } = await getProduct(id);
+        const { data } = await readProduct(id);
         setProduct(data);
         form.setFieldsValue(data);
       })();
