@@ -33,6 +33,7 @@ import CA from "../../assets/images/CA.png";
 import N from "../../assets/images/N.png";
 import TN from "../../assets/images/TN.png";
 import CASE from "../../assets/images/CASE.png";
+import { BackTop } from "antd";
 
 type Props = {};
 const color = [
@@ -230,6 +231,16 @@ const cateConputer = {
     },
   ],
 };
+const style: React.CSSProperties = {
+  height: 40,
+  width: 40,
+  lineHeight: '40px',
+  borderRadius: 4,
+  backgroundColor: '#D70018',
+  color: '#fff',
+  textAlign: 'center',
+  fontSize: 14,
+};
 const HomePage = (props: Props) => {
   return (
     <S.Container>
@@ -245,6 +256,9 @@ const HomePage = (props: Props) => {
       <S.Foot>
         <Footer />
       </S.Foot>
+      <BackTop>
+      <div style={style}>Lên đầu</div>
+    </BackTop>
     </S.Container>
   );
 };

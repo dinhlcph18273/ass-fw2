@@ -13,12 +13,14 @@ export const ItemImage = styled.div`
 `;
 
 export const ItemTitle = styled.div`
-  width: 100%;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  color: #444444;
-  padding: 10px 0;
+  a {
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #444444;
+    padding: 10px 0;
+  }
 `;
 export const ItemPrice = styled.div`
   width: 100%;

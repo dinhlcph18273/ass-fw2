@@ -4,38 +4,23 @@ import { useAppDispatch } from "../../../app/hooks";
 import { addProductToCart } from "../../../feartures/cart/cartSlice";
 import * as S from "./ProductItem.styled";
 import { currency } from "../../../utils/hel";
+import { Link } from "react-router-dom";
 
 type Props = {
   data: any,
   width?: any
-
 };
-
 const ProdcutsItem = (props: Props) => {
-  const dispatch = useAppDispatch();
   const width = props.width ? props.width : null
-  const addToCart = (product: any) => {
-    const itemCart = {
-      name: product.name,
-      total_price: Number(product.saleOffPrice),
-      quantity: 1,
-      price: Number(product.saleOffPrice),
-      oriPrice: Number(product.originalPrice),
-      id: product.id,
-      img: product.img
-    };
-    dispatch(addProductToCart(itemCart));
-  };
   return (
     <S.ContainerItem
-      onClick={() => addToCart(props.data)}
       style={{width : width}}
     >
       <S.ItemImage>
-        <img src={props.data.img} alt="" />
+       <a href={`/product/${props.data.id}`}> <img src={props.data.img} alt="" width="90%" /></a>
       </S.ItemImage>
       <S.ItemTitle>
-        <span>{props.data.name}</span>
+        <Link to={`/product/${props.data.id}`}><span>{props.data.name}</span></Link>
       </S.ItemTitle>
       <S.ItemPrice>
         <S.ItemPriceOrigin>
@@ -50,7 +35,7 @@ const ProdcutsItem = (props: Props) => {
       </S.ItemContentSale>
       <S.ItemRate>
         <Rate style={{color: "black"}} allowHalf defaultValue={props.data.rate} />
-        <span>{props.data.quantityComment} đánh giá</span>
+        <span>{props.data.quantityComment}đánh giá</span>
       </S.ItemRate>
     </S.ContainerItem>
   );

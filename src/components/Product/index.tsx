@@ -8,10 +8,13 @@ import { getCardProducts } from "../../feartures/products/productsSlice";
 type Props = {};
 
 const ProductsCard = (props: Props) => {
-  const data = useAppSelector((item: any)=> item.products.value)
+  const data = useAppSelector((item: any) => item.products.value);
+  console.log(data);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getCardProducts())
+    (async()=> {
+      await dispatch(getCardProducts());
+    })()
   }, []);
   return (
     <Container>
@@ -19,10 +22,12 @@ const ProductsCard = (props: Props) => {
         <h2>ĐIỆN THOẠI NỔI BẬT NHẤT</h2>
       </Title>
       <Content>
-        {data.map((product: any) => <ProdcutsItem data={product} key={product.id}/>)}
+        {data.map((product: any) => (
+          <ProdcutsItem data={product} key={product.id} />
+        ))}
       </Content>
     </Container>
-  )
+  );
 };
 
 const Container = styled.div`

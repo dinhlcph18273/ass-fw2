@@ -5,7 +5,7 @@ export const getCardProducts = createAsyncThunk(
   "products/getCardProducts",
   async () => {
     try {
-      const { data }: any = await getAllProduct();
+      const { data } = await getAllProduct();
       return data;
     } catch (error) {}
   }
@@ -21,7 +21,7 @@ export const getProduct = createAsyncThunk(
 export const filter = createAsyncThunk(
   "products/filter", 
   async (cateID:any)=> {
-    const {data} = await filterProducts(cateID)
+    const { data } = await filterProducts(cateID)
     return data
   }
 )
@@ -30,18 +30,18 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     value: [],
-    filter: []
+    product: {}
   },
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: (builder:any) => {
     builder.addCase(getCardProducts.fulfilled, (state: any, action: any) => {
       state.value = action.payload;
     });
     builder.addCase(getProduct.fulfilled, (state:any, action:any)=> {
-        state.value = action.payload
+        state.product = action.payload
     })
     builder.addCase(filter.fulfilled, (state:any, action:any)=> {
-      state.filter = action.payload
+      state.value = action.payload
     })
   },
 });

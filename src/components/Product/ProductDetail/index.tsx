@@ -7,28 +7,40 @@ import ProdcutsItem from "../ProductsItem";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
   filter,
-  getCardProducts,
   getProduct,
 } from "../../../feartures/products/productsSlice";
 import { Breadcrumb } from "antd";
 import Menu from "../../Menu";
 import Footer from "../../Footer";
 import { Link, useParams } from "react-router-dom";
-type Props = {};
+import { currency } from "../../../utils/hel";
+import { addProductToCart } from "../../../feartures/cart/cartSlice";
 
-const data: any = [];
-
-const ProductDetail = (props: Props) => {
+const ProductDetail = () => {
   const dispatch = useAppDispatch();
-  const product = useAppSelector((item: any) => item.products.value);
-  const filterProduct = useAppSelector((item: any) => item.products.filter);
   const { id } = useParams();
+  const product = useAppSelector((item: any) => item.products.product);
+  const filterProduct = useAppSelector((item: any) => item.products.value);
+  const price = Number(product.originalPrice)
+  const priceSale = Number(product.saleOffPrice)
+  const addToCart = (product: any) => {
+    const itemCart = {
+      name: product.name,
+      total_price: Number(product.saleOffPrice),
+      quantity: 1,
+      price: Number(product.saleOffPrice),
+      oriPrice: Number(product.originalPrice),
+      id: product.id,
+      img: product.img
+    };
+    dispatch(addProductToCart(itemCart));
+  };
 
   useEffect(() => {
-    dispatch(getProduct(id));
-    dispatch(filter(product?.cateID));
-    console.log(filterProduct);
-  }, [id, product.cateID]);
+    dispatch(getProduct(id)).then((res) => {
+      dispatch(filter(res.payload.cateID));
+    });
+  }, []);
   return (
     <>
       <Menu />
@@ -60,7 +72,7 @@ const ProductDetail = (props: Props) => {
       <div className={styles.product}>
         <div className={styles.product__left}>
           <div className={styles.product__left__images}>
-            <img src={product.img} alt="" width={"70%"} />
+            <img src={product.img} alt="" width={"90%"} />
           </div>
           <div className={styles.product__left__gallary}>
             <div className={styles.product__left__gallary__item}>
@@ -93,10 +105,10 @@ const ProductDetail = (props: Props) => {
           <div>
             <div className={styles.product__right__price}>
               <div className={styles.product__right__price__sale}>
-                11.690.000 ₫
+                {currency(priceSale)}
               </div>
               <div className={styles.product__right__price__origin}>
-                12.990.000 ₫
+                {currency(price)}
               </div>
             </div>
             <div className={styles.product__right__detail}>
@@ -112,7 +124,7 @@ const ProductDetail = (props: Props) => {
           <div className={styles.product__right__btn__cart}>
             <button>Mua ngay</button>
             <div>
-              <button>
+              <button onClick={() => addToCart(product)}>
                 <IconCart />
               </button>
               <span style={{ width: 80 }}>Thêm vào giỏ hàng</span>
@@ -125,8 +137,8 @@ const ProductDetail = (props: Props) => {
           <h3>Sản phẩm cùng loại</h3>
         </div>
         <div className={styles.product__same__content}>
-          <Swiper spaceBetween={10} slidesPerView={5}>
-            {data.map((item: any, index: any) => (
+          <Swiper spaceBetween={10} slidesPerView={3}>
+            {filterProduct.map((item: any, index: any) => (
               <SwiperSlide key={index}>
                 <ProdcutsItem data={item} width="100%" />
               </SwiperSlide>

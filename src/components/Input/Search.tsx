@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 const options = [
-    { value: 'Iphone' },
+    { value: 'Iphone' ,},
     { value: 'Samsung' },
     { value: 'Oppo' },
     { value: 'Xiaomi' },
