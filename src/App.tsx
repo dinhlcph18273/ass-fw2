@@ -26,7 +26,7 @@ function App() {
           </PrivateRouter>
         }
       >
-        <Route path="products" element={<ListProduct />} />
+        <Route index element={<ListProduct />} />
         <Route path="products/add" element={<AddProductPage />} />
         <Route path="products/:id/edit" element={<AddProductPage />} />
       </Route>

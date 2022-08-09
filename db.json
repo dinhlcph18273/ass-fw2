@@ -22,7 +22,7 @@
       "id": 3
     }
   ],
-  "category": [
+  "categories": [
     {
       "id": 1,
       "name": "Điện thoại"
@@ -38,6 +38,10 @@
     {
       "id": 4,
       "name": "Âm thanh"
+    },
+    {
+      "name": "Sản phẩm khác",
+      "id": 5
     }
   ],
   "products": [

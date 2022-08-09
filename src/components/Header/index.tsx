@@ -1,16 +1,22 @@
 import {
   ClockCircleOutlined,
+  DropboxOutlined,
   HomeOutlined,
   LaptopOutlined,
   PhoneOutlined,
   TabletOutlined,
 } from "@ant-design/icons";
-import type { MenuProps } from "antd";
 import { Menu } from "antd";
-import styled from "styled-components";
-import Banner from "../../assets/images/banner.png";
-import React from "react";
+import type { MenuProps } from "antd";
 
+import React from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { getProductByCategory } from "../../feartures/products/productsSlice";
+import styled from "styled-components";
+
+import Banner from "../../assets/images/banner.png"
+
+type Props = {};
 type MenuItem = Required<MenuProps>["items"][number];
 function getItem(
   label: React.ReactNode,
@@ -27,85 +33,44 @@ function getItem(
     type,
   } as MenuItem;
 }
-
 const items: MenuItem[] = [
-  getItem("Điện thoại", "sub1", <PhoneOutlined />, [
-    getItem(
-      "Item 1",
-      null,
-      null,
-      [getItem("Option 1", "1"), getItem("Option 2", "2")],
-      "group"
-    ),
-    getItem(
-      "Item 2",
-      null,
-      null,
-      [getItem("Option 3", "3"), getItem("Option 4", "4")],
-      "group"
-    ),
-  ]),
-
-  getItem("Laptop", "sub2", <LaptopOutlined />, [
-    getItem("Option 5", "5"),
-    getItem("Option 6", "6"),
-    getItem("Submenu", "sub15", null, [
-      getItem("Option 7", "7"),
-      getItem("Option 8", "8"),
-    ]),
-  ]),
-
-  getItem("Máy tính bảng", "sub3", <TabletOutlined />, [
-    getItem("Option 9", "9"),
-    getItem("Option 10", "10"),
-    getItem("Option 11", "11"),
-    getItem("Option 12", "12"),
-  ]),
-  getItem("Âm thanh", "sub4", <TabletOutlined />, [
-    getItem("Option 9", "91"),
-    getItem("Option 10", "101"),
-  ]),
-
-  getItem("Đồng hồ", "sub5", <ClockCircleOutlined />, [
-    getItem("Option 9", "92"),
-    getItem("Option 10", "102"),
-  ]),
-  getItem("Nhà Thông Minh", "sub6", <HomeOutlined />, [
-    getItem("Option 9", "93"),
-    getItem("Option 10", "103"),
-  ]),
+  getItem("Tất cả", 0, <DropboxOutlined />),
+  getItem("Điện thoại", 1, <PhoneOutlined />),
+  getItem("Laptop", 2, <LaptopOutlined />),
+  getItem("Máy tính bảng", 3, <TabletOutlined />),
+  getItem("Âm thanh", 4, <TabletOutlined />),
+  getItem("Đồng hồ", 5, <ClockCircleOutlined />),
+  getItem("Nhà Thông Minh", 6, <HomeOutlined />),
 ];
 
-const onClick: MenuProps["onClick"] = (e: any) => {
-  console.log("click", e);
-};
-type Props = {};
-
 const Header = (props: Props) => {
+  const dispatch = useAppDispatch();
+  const onClick: MenuProps["onClick"] = (e) => {
+    console.log(e.key);
+    dispatch(getProductByCategory(e.key));
+  };
   return (
-    <Row>
-      <div>
-        <Menu
-          onClick={onClick}
-          style={{ width: 240 }}
-          mode="vertical"
-          items={items}
-        />
-      </div>
-      <Img>
-        <img src={Banner} alt="" width={`85%`} />
-      </Img>
-    </Row>
+    <Siderbar>
+      <MenuItem
+        style={{ width: 256 }}
+        mode="vertical"
+        items={items}
+        onClick={onClick}
+      />
+      <img src={Banner} alt="" width={`70%`}/>
+    </Siderbar>
   );
 };
 
-const Row = styled.div`
+const Siderbar = styled.div`
+  width: 100%;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
 `;
-const Img = styled.div`
-  text-align: right;
+const MenuItem = styled(Menu)`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default Header;

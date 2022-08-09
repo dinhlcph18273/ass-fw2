@@ -39,7 +39,7 @@ const ListProduct = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3001/category`);
+        const { data } = await axios.get(`http://localhost:3001/categories`);
         setCategory(data);
       } catch (error) {
         console.log(message.error);

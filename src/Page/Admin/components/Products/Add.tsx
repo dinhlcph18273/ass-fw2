@@ -96,7 +96,7 @@ const AddProductPage = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("http://localhost:3001/category");
+      const { data } = await axios.get("http://localhost:3001/categories");
       setCategory(data);
     })();
 
@@ -147,6 +147,15 @@ const AddProductPage = () => {
                 </S.UploadBtn>
               </Form.Item>
             </S.Upload> 
+            <Form.Item
+              name="description"
+              label="Mô tả ngắn"
+              rules={[
+                { required: true, message: "Trường này không được để trống!" },
+              ]}
+            >
+              <Input.TextArea rows={5} />
+            </Form.Item>
           </Col>
           <Col span={14}>
             <Typography.Title level={4}>Thông tin sản phẩm</Typography.Title>
@@ -214,7 +223,7 @@ const AddProductPage = () => {
 
             <Form.Item
                 name="feature"
-                label="Tính năng"
+                label="Tính năng sản phẩm"
                 rules={[
                   {
                     validator(_, value) {
@@ -236,8 +245,8 @@ const AddProductPage = () => {
                 <TextEditor onChange={() => setDisable(false)} />
               </Form.Item>
               <Form.Item
-                name="description"
-                label="Đặc điểm nổi bật"
+                name="especial"
+                label="Đặc điểm nổi bật "
                 rules={[
                   {
                     validator(_, value) {

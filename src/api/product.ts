@@ -31,6 +31,6 @@ export const changeStatus = (product: any) => {
 };
 
 export const filterProducts = (categoryId: any) => {
-  const url = `products?cateID=${categoryId}`;
+  const url = `products?categoryId=${categoryId}`;
   return instance.get(url, categoryId)
 };

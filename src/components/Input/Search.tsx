@@ -1,39 +1,42 @@
-import { SearchOutlined } from '@ant-design/icons';
-import { AutoComplete, Input } from 'antd';
-import styled from 'styled-components'
+import { SearchOutlined } from "@ant-design/icons";
+import { Input } from "antd";
+import React from "react";
+import styled from "styled-components";
+type Props = {
+  onchange?: (key: string) => void;
+};
 
+const InputSearch = (props: Props) => {
+  const debounce = (func: (e: any) => void, wait = 500) => {
+    let h: any;
+    return (e: any) => {
+      clearTimeout(h);
+      h = setTimeout(() => func(e), wait);
+    };
+  };
+  const handleChange = (e: any) => {
+    props.onchange?.(e.target.value);
+  };
 
-const options = [
-    { value: 'Iphone' ,},
-    { value: 'Samsung' },
-    { value: 'Oppo' },
-    { value: 'Xiaomi' },
-    { value: 'Redmi' },
+  return (
+    <InputSearch1
+      onChange={debounce((e) => handleChange(e))}
+      placeholder="input search text"
+      prefix={<SearchOutlined />}
+    />
+  );
+};
 
-];
+const InputSearch1 = styled(Input)`
+  border-radius: 6px !important;
+  overflow: hidden;
+  gap: 5px;
 
-const InputSearch = () => {
-    return (
-        <AutoCompleteCustom
-            dropdownClassName="certain-category-search-dropdown"
-            dropdownMatchSelectWidth={400}
-            options={options}
-            filterOption={(inputValue, option) => {
-                 return option!.value.toUpperCase().includes(inputValue.toUpperCase())
-            }}
-        >
-            <Inputcustom size="large" placeholder="Iphone,Samsung,Oppo..." prefix={<SearchOutlined />} />
-        </AutoCompleteCustom>
-    )
-}
-
-const AutoCompleteCustom = styled(AutoComplete)`
-    width: 550px;
-    border: none;
-`
-
-const Inputcustom = styled(Input)`
-    border-radius:10px ;
-`
+  svg {
+    font-size: 16px;
+    font-weight: bold;
+    transform: scale(1.2);
+  }
+`;
 
 export default InputSearch;

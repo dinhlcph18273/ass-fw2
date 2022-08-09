@@ -8,17 +8,27 @@ import vector from "../../assets/images/address.svg";
 import shopping from "../../assets/images/shopping.svg";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import ProductsSearch from "../ProductSearch";
+import { useAppDispatch } from "../../app/hooks";
+import { filterProductByname } from "../../feartures/products/productsSlice";
 
 type Props = {};
 
 const Menu = (props: Props) => {
+  const dispatch = useAppDispatch();
+  const handleFilterProducts = (key: string) => {
+    dispatch(filterProductByname(key));
+  };
   return (
     <S.Wrapper>
       <S.Container>
         <Link to="/">
           <S.Logo src={logo} />
         </Link>
-        <InputSearch />
+        <InputSearch onchange={handleFilterProducts} />
+        <S.ProductSearch>
+          <ProductsSearch />
+        </S.ProductSearch>
         <S.Services>
           <ServiceBtn
             image={``}

@@ -35,7 +35,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(getProduct(id)).then((res) => {
-      dispatch(filter(res.payload.cateID));
+      dispatch(filter(res.payload.categoryId));
     });
   }, []);
   return (
