@@ -22,6 +22,7 @@ import {
   readProduct,
 } from "../../../../api/product";
 import axios from "axios";
+import TextEditor from "../../../../components/TextEditor";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -34,6 +35,7 @@ const AddProductPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState<any>([]);
   const [product, setProduct] = useState<any>({});
+  const [disable, setDisable] = useState<boolean>(true);
 
   const handleChangeImage = (e: any) => {
     const file = e.target.files[0];
@@ -144,16 +146,7 @@ const AddProductPage = () => {
                   {isLoading && <Spin size="large" />}
                 </S.UploadBtn>
               </Form.Item>
-            </S.Upload>
-            <Form.Item
-              name="description"
-              label="Mô tả ngắn"
-              rules={[
-                { required: true, message: "Trường này không được để trống!" },
-              ]}
-            >
-              <Input.TextArea rows={5} />
-            </Form.Item>
+            </S.Upload> 
           </Col>
           <Col span={14}>
             <Typography.Title level={4}>Thông tin sản phẩm</Typography.Title>
@@ -220,21 +213,51 @@ const AddProductPage = () => {
             </Row>
 
             <Form.Item
-              name="feature"
-              labelCol={{ span: 24 }}
-              label="Đặc điểm nổi bật"
-              rules={[{ required: true, message: "Đặc điểm sản phẩm" }]}
-            >
-              <TextArea name="feature" />
-            </Form.Item>
-            <Form.Item
-              name="description"
-              labelCol={{ span: 24 }}
-              label="Mô tả sản phẩm"
-              rules={[{ required: true, message: "Mô tả sản phẩm" }]}
-            >
-              <TextArea name="description" />
-            </Form.Item>
+                name="feature"
+                label="Tính năng"
+                rules={[
+                  {
+                    validator(_, value) {
+                      if (
+                        !value ||
+                        value == "<p><br></p>" ||
+                        value == "<h1><br></h1>" ||
+                        value == "<h2><br></h2>"
+                      ) {
+                        return Promise.reject(
+                          "Trường này không được để trống!"
+                        );
+                      }
+                      return Promise.resolve();
+                    },
+                  },
+                ]}
+              >
+                <TextEditor onChange={() => setDisable(false)} />
+              </Form.Item>
+              <Form.Item
+                name="description"
+                label="Đặc điểm nổi bật"
+                rules={[
+                  {
+                    validator(_, value) {
+                      if (
+                        !value ||
+                        value == "<p><br></p>" ||
+                        value == "<h1><br></h1>" ||
+                        value == "<h2><br></h2>"
+                      ) {
+                        return Promise.reject(
+                          "Trường này không được để trống!"
+                        );
+                      }
+                      return Promise.resolve();
+                    },
+                  },
+                ]}
+              >
+                <TextEditor onChange={() => setDisable(false)} />
+              </Form.Item>
 
             <Form.Item>
               <Button type="primary" htmlType="submit">

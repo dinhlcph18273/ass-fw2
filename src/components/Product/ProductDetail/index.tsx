@@ -5,10 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import IconCart from "../../icons/IconCart";
 import ProdcutsItem from "../ProductsItem";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import {
-  filter,
-  getProduct,
-} from "../../../feartures/products/productsSlice";
+import { filter, getProduct } from "../../../feartures/products/productsSlice";
 import { Breadcrumb } from "antd";
 import Menu from "../../Menu";
 import Footer from "../../Footer";
@@ -21,8 +18,8 @@ const ProductDetail = () => {
   const { id } = useParams();
   const product = useAppSelector((item: any) => item.products.product);
   const filterProduct = useAppSelector((item: any) => item.products.value);
-  const price = Number(product.originalPrice)
-  const priceSale = Number(product.saleOffPrice)
+  const price = Number(product.originalPrice);
+  const priceSale = Number(product.saleOffPrice);
   const addToCart = (product: any) => {
     const itemCart = {
       name: product.name,
@@ -31,7 +28,7 @@ const ProductDetail = () => {
       price: Number(product.saleOffPrice),
       oriPrice: Number(product.originalPrice),
       id: product.id,
-      img: product.img
+      img: product.img,
     };
     dispatch(addProductToCart(itemCart));
   };
@@ -57,12 +54,7 @@ const ProductDetail = () => {
             </Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <Link to="/">
-              <span>SamSung</span>
-            </Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <span>Điện thoại</span>
+            <span>{product.name}</span>
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
