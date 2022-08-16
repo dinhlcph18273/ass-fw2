@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
 import { AxiosError } from "axios";
-import storage from "redux-persist/lib/storage";
 import { signin, signup } from "../../api/user";
 
 export const createUser = createAsyncThunk(
@@ -35,12 +34,15 @@ const userSlice = createSlice({
     user: {
       email: "",
       id: null,
-      phone: null,
+      phone: 0,
     },
   },
   reducers: {
     signOut(state) {
-      storage.removeItem("user")
+      state.accessToken = "",
+      state.user.email = "",
+      state.user.id = null,
+      state.user.phone = 0,
       message.success("Đăng xuất thành công");
     },
   },

@@ -39,8 +39,8 @@ const items: MenuItem[] = [
   getItem("Laptop", 2, <LaptopOutlined />),
   getItem("Máy tính bảng", 3, <TabletOutlined />),
   getItem("Âm thanh", 4, <TabletOutlined />),
-  getItem("Đồng hồ", 5, <ClockCircleOutlined />),
-  getItem("Nhà Thông Minh", 6, <HomeOutlined />),
+  getItem("Đồng hồ", 2, <ClockCircleOutlined />),
+  getItem("Nhà Thông Minh", 1, <HomeOutlined />),
 ];
 
 const Header = (props: Props) => {
