@@ -13,8 +13,6 @@ type Props = {};
 
 const Cart = (props: Props) => {
   const { cart, total } = useAppSelector(GetCart);
-  console.log(useAppSelector(GetCart));
-
   return (
     <div>
       <Menu />
@@ -48,7 +46,7 @@ const Cart = (props: Props) => {
             height: 50,
           }}
         >
-          <Link to="">Tiến hành đặt hàng</Link>
+          <Link to="/checkout">Tiến hành đặt hàng</Link>
         </Button>
         <Button
           style={{

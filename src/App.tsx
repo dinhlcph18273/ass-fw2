@@ -9,6 +9,7 @@ import Signup from "./components/layouts/signup";
 import PrivateRouter from "./components/PrivateRouter";
 import ProductDetail from "./components/Product/ProductDetail";
 import Cart from "./components/Cart";
+import Checkout from "./components/layouts/Checkout";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="product/:id" element={<ProductDetail />} />
         <Route path="cart" element={<Cart/>}/>
+        <Route path="checkout" element={<Checkout/>}/>
       </Route>
       <Route
         path="/admin"

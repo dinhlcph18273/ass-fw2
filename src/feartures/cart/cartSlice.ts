@@ -118,11 +118,15 @@ export const cartSlice = createSlice({
             ),
           });
         }
-    }
+    },
+    clear: (state) => {
+      state.cart = [];
+      state.total = 0;
+    },
   },
   extraReducers(builder) {},
 });
-export const { addProductToCart, incProductToCart, decProductToCart, removeCartItem } =
+export const { addProductToCart, incProductToCart, decProductToCart, removeCartItem , clear} =
   cartSlice.actions;
 
 export const GetCart = (state: RootState) => state.cart
