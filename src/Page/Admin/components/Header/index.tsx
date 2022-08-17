@@ -6,7 +6,8 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { isAuthenticate } from "../../../../utils/localStorage";
 import { AiOutlineLogout } from "react-icons/ai";
-import storage from "redux-persist/lib/storage";
+import { useAppDispatch } from "../../../../app/hooks";
+import { signOut } from "../../../../feartures/user/userSilice";
 
 const { Header } = Layout;
 
@@ -14,8 +15,9 @@ type Props = {};
 
 const Head = (props: Props) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const handleLogout = () => {
-    storage.removeItem('persist:root')
+    dispatch(signOut())
     navigate('/signin')
   }
   return (

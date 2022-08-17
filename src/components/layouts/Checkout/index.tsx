@@ -2,8 +2,8 @@ import { Button, Form, Input, Typography } from "antd";
 import React from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../app/hooks";
-import { GetCart } from "../../../feartures/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { clear, GetCart, orderCart } from "../../../feartures/cart/cartSlice";
 import { currency } from "../../../utils/hel";
 import Footer from "../../Footer";
 import Menu from "../../Menu";
@@ -12,9 +12,11 @@ import * as S from "./styled";
 type Props = {};
 
 const Checkout = (props: Props) => {
+  const dispatch = useAppDispatch()
   const { cart, total } = useAppSelector(GetCart);
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    dispatch(orderCart({products: cart, infor: values, status:1, total:total}))
+    dispatch(clear())
   };
 
   const onFinishFailed = (errorInfo: any) => {

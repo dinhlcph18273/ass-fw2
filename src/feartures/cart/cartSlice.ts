@@ -1,6 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
+import axios from "axios";
 import { RootState } from "../../app/store";
+
+export const orderCart = createAsyncThunk(
+  "cart/orderCart",
+  async (order:any) => {
+    await axios.post(`http://localhost:3001/order`,order)
+  }
+)
 
 export const cartSlice = createSlice({
   name: "cart",

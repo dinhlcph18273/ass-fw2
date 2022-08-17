@@ -12,16 +12,19 @@ import Footer from "../../Footer";
 import { Link, useParams } from "react-router-dom";
 import { currency } from "../../../utils/hel";
 import { addProductToCart } from "../../../feartures/cart/cartSlice";
+import { GetUser } from "../../../feartures/user/userSilice";
 
 const ProductDetail = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
+  const {user} = useAppSelector(GetUser)
   const product = useAppSelector((item: any) => item.products.product);
   const filterProduct = useAppSelector((item: any) => item.products.value);
   const price = Number(product.originalPrice);
   const priceSale = Number(product.saleOffPrice);
   const addToCart = (product: any) => {
     const itemCart = {
+      userId: user.id,
       name: product.name,
       total_price: Number(product.saleOffPrice),
       quantity: 1,
