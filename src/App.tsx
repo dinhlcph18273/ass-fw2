@@ -10,6 +10,7 @@ import PrivateRouter from "./components/PrivateRouter";
 import ProductDetail from "./components/Product/ProductDetail";
 import Cart from "./components/Cart";
 import Checkout from "./components/layouts/Checkout";
+import Order from "./Page/Admin/components/Order";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route index element={<ListProduct />} />
         <Route path="products/add" element={<AddProductPage />} />
         <Route path="products/:id/edit" element={<AddProductPage />} />
+        <Route path="order" element={<Order/>}/>
       </Route>
       <Route path="signin" element={<Signin />} />
       <Route path="signup" element={<Signup />} />

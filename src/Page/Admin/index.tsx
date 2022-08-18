@@ -12,9 +12,9 @@ const item: MenuProps["items"] = [
   {
     key: "cellphone",
     icon: <BsPhone />,
-    label: <Link to="/admin/products">Điện thoại</Link>,
+    label: <Link to="/admin">Điện thoại</Link>,
   },
-  { key: "laptop", icon: <AiOutlineLaptop />, label: "Laptop" },
+  { key: "laptop", icon: <AiOutlineLaptop />, label: <Link to="/admin/order">Order</Link> },
   { key: "tablet", icon: <BsTablet />, label: "Máy tính bảng" },
   { key: "audio", icon: <BsHeadphones />, label: "Âm thanh" },
   // {

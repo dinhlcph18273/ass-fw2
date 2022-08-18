@@ -77,7 +77,7 @@ const AddProductPage = () => {
             await editProduct({ ...values, images: imageUrl, id: product.id });
             message.success("Cập nhật thành công");
 
-            navigate("/admin/products");
+            navigate("/admin");
           }
         } else {
           if (imageUrl && !isLoading) {
@@ -148,14 +148,28 @@ const AddProductPage = () => {
               </Form.Item>
             </S.Upload> 
             <Form.Item
-              name="description"
-              label="Mô tả ngắn"
-              rules={[
-                { required: true, message: "Trường này không được để trống!" },
-              ]}
-            >
-              <Input.TextArea rows={5} />
-            </Form.Item>
+                name="description"
+                label="Mô tả"
+                rules={[
+                  {
+                    validator(_, value) {
+                      if (
+                        !value ||
+                        value == "<p><br></p>" ||
+                        value == "<h1><br></h1>" ||
+                        value == "<h2><br></h2>"
+                      ) {
+                        return Promise.reject(
+                          "Trường này không được để trống!"
+                        );
+                      }
+                      return Promise.resolve();
+                    },
+                  },
+                ]}
+              >
+                <TextEditor onChange={() => setDisable(false)} />
+              </Form.Item>
           </Col>
           <Col span={14}>
             <Typography.Title level={4}>Thông tin sản phẩm</Typography.Title>
@@ -244,6 +258,7 @@ const AddProductPage = () => {
               >
                 <TextEditor onChange={() => setDisable(false)} />
               </Form.Item>
+
               <Form.Item
                 name="especial"
                 label="Đặc điểm nổi bật "

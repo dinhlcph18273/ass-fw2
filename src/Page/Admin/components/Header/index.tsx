@@ -4,7 +4,6 @@ import { Breadcrumb } from "antd";
 import { Input, Layout } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import { isAuthenticate } from "../../../../utils/localStorage";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useAppDispatch } from "../../../../app/hooks";
 import { signOut } from "../../../../feartures/user/userSilice";
